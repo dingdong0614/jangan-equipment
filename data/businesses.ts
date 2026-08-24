@@ -54,6 +54,12 @@ export const categories: Category[] = [
     label: "전기설비",
     description: "전기 배선, 분전반, 산업 전기설비 시공",
   },
+  {
+    slug: "interior",
+    code: "INT",
+    label: "인테리어",
+    description: "매장·주택 인테리어 시공, 리모델링, 마감 공사",
+  },
 ];
 
 // 예시 데이터입니다. 실제 업체 정보로 교체 전까지는 등록 안내용으로만 사용하세요.
@@ -167,6 +173,28 @@ export const businesses: Business[] = [
     address: "수원시 장안구 조원동",
     hours: "평일 09:00 - 18:00 · 야간 응급출동 가능",
     specialties: ["분전반 교체", "누전 점검", "산업 전기설비"],
+  },
+  {
+    slug: "jeongja-interior",
+    name: "정자인테리어",
+    categorySlug: "interior",
+    since: "2014년 개업",
+    ownerLine: "매장 인테리어는 설계부터 시공까지 한 번에.",
+    phone: "031-000-1011",
+    address: "수원시 장안구 정자동",
+    hours: "평일 09:00 - 18:00",
+    specialties: ["매장 인테리어", "리모델링", "마감 공사"],
+  },
+  {
+    slug: "yeonghwa-remodel",
+    name: "영화리모델링",
+    categorySlug: "interior",
+    since: "2017년 개업",
+    ownerLine: "주택 리모델링, 견적부터 투명하게 안내드립니다.",
+    phone: "031-000-1012",
+    address: "수원시 장안구 영화동",
+    hours: "평일 09:00 - 19:00",
+    specialties: ["주택 리모델링", "도배·장판", "욕실 개조"],
   },
 ];
 

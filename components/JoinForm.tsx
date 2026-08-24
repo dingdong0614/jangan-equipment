@@ -6,7 +6,7 @@ import { categories } from "@/data/businesses";
 
 type Status = "idle" | "sending" | "success" | "error";
 
-export default function JoinForm() {
+export default function JoinForm({ monthlyFee }: { monthlyFee: string }) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
 
@@ -17,7 +17,7 @@ export default function JoinForm() {
     setError("");
     try {
       await submitToWeb3Forms({
-        subject: "[업체 등록 신청]",
+        subject: `[업체 등록 신청] ${monthlyFee}`,
         businessName: String(form.get("businessName") ?? ""),
         category: String(form.get("category") ?? ""),
         contactName: String(form.get("contactName") ?? ""),
@@ -112,10 +112,13 @@ export default function JoinForm() {
         <p className="mt-3 text-sm text-red-400">{error}</p>
       )}
 
+      <p className="mt-6 text-xs text-ink-soft">
+        신청 승인 후 {monthlyFee} 이용료가 청구됩니다.
+      </p>
       <button
         type="submit"
         disabled={status === "sending"}
-        className="mt-6 w-full bg-amber py-3 text-sm font-semibold text-surface-deep transition-colors hover:bg-amber-strong disabled:opacity-60"
+        className="mt-2 w-full bg-amber py-3 text-sm font-semibold text-surface-deep transition-colors hover:bg-amber-strong disabled:opacity-60"
       >
         {status === "sending" ? "전송 중..." : "등록 신청하기"}
       </button>

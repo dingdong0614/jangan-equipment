@@ -76,14 +76,14 @@ export default function Home() {
             장안구에서 영업 중이신가요?
           </h2>
           <p className="mx-auto mt-3 max-w-md text-ink/70">
-            업체 정보를 등록하면 장안구 인근에서 견적을 찾는 고객에게
-            노출됩니다.
+            {SITE.monthlyFee}에 업체 정보를 등록하면 장안구 인근에서 견적을
+            찾는 고객에게 노출됩니다.
           </p>
           <Link
             href="/join"
             className="mt-6 inline-block bg-amber px-6 py-3 text-sm font-semibold text-surface-deep transition-colors hover:bg-amber-strong"
           >
-            무료로 등록 신청하기
+            {SITE.monthlyFee}에 등록 신청하기
           </Link>
         </div>
       </section>
