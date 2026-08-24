@@ -20,7 +20,7 @@ export default async function DirectoryPage({ searchParams }: PageProps) {
     <div className="mx-auto max-w-6xl px-6 py-14">
       <p className="spec-label text-xs text-blueprint">DIRECTORY</p>
       <h1 className="mt-2 text-3xl font-bold">업체 디렉토리</h1>
-      <p className="mt-2 text-graphite-soft">
+      <p className="mt-2 text-ink-soft">
         {SITE.region} 설비·제조 업체를 업종별로 찾아보세요.
       </p>
 

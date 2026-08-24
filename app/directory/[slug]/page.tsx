@@ -32,15 +32,15 @@ export default async function BusinessPage({ params }: PageProps) {
     <div className="mx-auto max-w-4xl px-6 py-14">
       <Link
         href="/directory"
-        className="text-sm text-graphite-soft hover:text-amber-strong"
+        className="text-sm text-ink-soft hover:text-amber"
       >
         ← 디렉토리로
       </Link>
 
-      <div className="mt-4 border border-graphite bg-paper">
-        <div className="flex items-center justify-between border-b border-graphite bg-graphite px-6 py-3 text-paper">
+      <div className="mt-4 border border-line-strong bg-surface">
+        <div className="flex items-center justify-between border-b border-line-strong bg-surface-deep px-6 py-3 text-ink">
           <span className="spec-label text-xs text-amber">{category?.code}</span>
-          <span className="spec-label text-xs text-paper/60">
+          <span className="spec-label text-xs text-ink/60">
             SPEC SHEET
           </span>
         </div>
@@ -48,53 +48,53 @@ export default async function BusinessPage({ params }: PageProps) {
         <div className="p-6 sm:p-8">
           <p className="spec-label text-xs text-blueprint">{category?.label}</p>
           <h1 className="mt-2 text-3xl font-bold">{business.name}</h1>
-          <p className="mt-3 max-w-lg text-graphite-soft">
+          <p className="mt-3 max-w-lg text-ink-soft">
             &ldquo;{business.ownerLine}&rdquo;
           </p>
 
-          <dl className="mt-8 grid grid-cols-1 gap-6 border-t border-paper-line pt-6 sm:grid-cols-2">
+          <dl className="mt-8 grid grid-cols-1 gap-6 border-t border-line pt-6 sm:grid-cols-2">
             <div>
-              <dt className="spec-label text-xs text-graphite-soft/60">연락처</dt>
+              <dt className="spec-label text-xs text-ink-soft/70">연락처</dt>
               <dd className="mt-1">
                 <a
                   href={`tel:${business.phone.replace(/-/g, "")}`}
-                  className="font-semibold text-amber-strong hover:underline"
+                  className="font-semibold text-amber hover:underline"
                 >
                   {business.phone}
                 </a>
               </dd>
             </div>
             <div>
-              <dt className="spec-label text-xs text-graphite-soft/60">영업시간</dt>
+              <dt className="spec-label text-xs text-ink-soft/70">영업시간</dt>
               <dd className="mt-1">{business.hours}</dd>
             </div>
             <div>
-              <dt className="spec-label text-xs text-graphite-soft/60">위치</dt>
+              <dt className="spec-label text-xs text-ink-soft/70">위치</dt>
               <dd className="mt-1">
                 {business.address}
                 <a
                   href={naverMapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="ml-2 text-amber-strong hover:underline"
+                  className="ml-2 text-amber hover:underline"
                 >
                   네이버지도 →
                 </a>
               </dd>
             </div>
             <div>
-              <dt className="spec-label text-xs text-graphite-soft/60">개업</dt>
+              <dt className="spec-label text-xs text-ink-soft/70">개업</dt>
               <dd className="mt-1">{business.since}</dd>
             </div>
           </dl>
 
-          <div className="mt-6 border-t border-paper-line pt-6">
-            <dt className="spec-label text-xs text-graphite-soft/60">취급 분야</dt>
+          <div className="mt-6 border-t border-line pt-6">
+            <dt className="spec-label text-xs text-ink-soft/70">취급 분야</dt>
             <dd className="mt-2 flex flex-wrap gap-2">
               {business.specialties.map((s) => (
                 <span
                   key={s}
-                  className="border border-paper-line px-3 py-1 text-sm"
+                  className="border border-line px-3 py-1 text-sm"
                 >
                   {s}
                 </span>

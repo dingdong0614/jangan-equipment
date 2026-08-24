@@ -8,7 +8,7 @@ const NAV = [
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-graphite bg-paper/95 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-line-strong bg-bg/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link href="/" className="flex items-baseline gap-2">
           <span className="font-mono text-xs text-amber-strong spec-label">
@@ -23,7 +23,7 @@ export default function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-graphite-soft transition-colors hover:text-amber-strong"
+              className="text-ink-soft transition-colors hover:text-amber"
             >
               {item.label}
             </Link>

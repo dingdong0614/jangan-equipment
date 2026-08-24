@@ -32,9 +32,9 @@ export default function DirectoryClient({
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="업체명, 지역, 취급 분야로 검색"
-          className="w-full max-w-sm border border-graphite bg-white px-4 py-2.5 text-sm outline-none focus:border-amber-strong"
+          className="w-full max-w-sm border border-line-strong bg-surface px-4 py-2.5 text-sm text-ink outline-none focus:border-amber"
         />
-        <span className="spec-label text-xs text-graphite-soft/60">
+        <span className="spec-label text-xs text-ink-soft/70">
           {String(filtered.length).padStart(2, "0")}건 검색됨
         </span>
       </div>
@@ -44,8 +44,8 @@ export default function DirectoryClient({
           onClick={() => setCategory("all")}
           className={`spec-label border px-3 py-1.5 text-xs transition-colors ${
             category === "all"
-              ? "border-graphite bg-graphite text-paper"
-              : "border-paper-line text-graphite-soft hover:border-graphite"
+              ? "border-amber bg-amber text-surface-deep"
+              : "border-line text-ink-soft hover:border-line-strong"
           }`}
         >
           전체
@@ -56,8 +56,8 @@ export default function DirectoryClient({
             onClick={() => setCategory(c.slug)}
             className={`spec-label border px-3 py-1.5 text-xs transition-colors ${
               category === c.slug
-                ? "border-graphite bg-graphite text-paper"
-                : "border-paper-line text-graphite-soft hover:border-graphite"
+                ? "border-amber bg-amber text-surface-deep"
+                : "border-line text-ink-soft hover:border-line-strong"
             }`}
           >
             {c.label}
@@ -65,7 +65,7 @@ export default function DirectoryClient({
         ))}
       </div>
 
-      <div className="mt-8 border-t border-graphite">
+      <div className="mt-8 border-t border-line-strong">
         <AnimatePresence mode="popLayout">
           {filtered.map((business) => (
             <motion.div
@@ -81,7 +81,7 @@ export default function DirectoryClient({
           ))}
         </AnimatePresence>
         {filtered.length === 0 && (
-          <p className="py-10 text-center text-sm text-graphite-soft">
+          <p className="py-10 text-center text-sm text-ink-soft">
             조건에 맞는 업체가 없습니다.
           </p>
         )}

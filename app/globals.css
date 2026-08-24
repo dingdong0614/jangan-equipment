@@ -1,20 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --paper: #f2ede2;
-  --paper-line: #d8cfba;
-  --graphite: #1c1f1e;
-  --graphite-soft: #2b2f2d;
-  --blueprint: #3a5a78;
-  --amber: #d97a1f;
-  --amber-strong: #b8620f;
+  --bg: #0e1e34;
+  --surface: #17304c;
+  --surface-deep: #0a1626;
+  --line: #274a6b;
+  --line-strong: #3f6690;
+  --ink: #eef2ee;
+  --ink-soft: #93aec4;
+  --blueprint: #7fb4dd;
+  --amber: #dd932c;
+  --amber-strong: #f4b155;
 }
 
 @theme inline {
-  --color-paper: var(--paper);
-  --color-paper-line: var(--paper-line);
-  --color-graphite: var(--graphite);
-  --color-graphite-soft: var(--graphite-soft);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-deep: var(--surface-deep);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
   --color-blueprint: var(--blueprint);
   --color-amber: var(--amber);
   --color-amber-strong: var(--amber-strong);
@@ -32,16 +38,17 @@ html {
 }
 
 body {
-  background: var(--paper);
-  color: var(--graphite);
+  background: var(--bg);
+  color: var(--ink);
   font-family: var(--font-sans);
 }
 
 .blueprint-grid {
   background-image:
-    linear-gradient(var(--paper-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
   background-size: 32px 32px;
+  background-color: var(--surface-deep);
 }
 
 .spec-label {

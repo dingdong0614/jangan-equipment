@@ -34,9 +34,9 @@ export default function JoinForm() {
 
   if (status === "success") {
     return (
-      <div className="border border-graphite bg-paper p-8 text-center">
-        <p className="text-lg font-bold text-amber-strong">신청이 접수되었습니다.</p>
-        <p className="mt-2 text-sm text-graphite-soft">
+      <div className="border border-line-strong bg-surface p-8 text-center">
+        <p className="text-lg font-bold text-amber">신청이 접수되었습니다.</p>
+        <p className="mt-2 text-sm text-ink-soft">
           담당자가 확인 후 남겨주신 연락처로 연락드립니다.
         </p>
       </div>
@@ -44,14 +44,14 @@ export default function JoinForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="border border-graphite bg-paper p-6 sm:p-8">
+    <form onSubmit={handleSubmit} className="border border-line-strong bg-surface p-6 sm:p-8">
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="text-sm">
           업체명
           <input
             name="businessName"
             required
-            className="mt-1 w-full border border-paper-line bg-white px-3 py-2 text-sm outline-none focus:border-amber-strong"
+            className="mt-1 w-full border border-line bg-bg px-3 py-2 text-sm text-ink outline-none focus:border-amber"
           />
         </label>
         <label className="text-sm">
@@ -60,7 +60,7 @@ export default function JoinForm() {
             name="category"
             required
             defaultValue=""
-            className="mt-1 w-full border border-paper-line bg-white px-3 py-2 text-sm outline-none focus:border-amber-strong"
+            className="mt-1 w-full border border-line bg-bg px-3 py-2 text-sm text-ink outline-none focus:border-amber"
           >
             <option value="" disabled>
               선택해주세요
@@ -78,7 +78,7 @@ export default function JoinForm() {
           <input
             name="contactName"
             required
-            className="mt-1 w-full border border-paper-line bg-white px-3 py-2 text-sm outline-none focus:border-amber-strong"
+            className="mt-1 w-full border border-line bg-bg px-3 py-2 text-sm text-ink outline-none focus:border-amber"
           />
         </label>
         <label className="text-sm">
@@ -86,7 +86,7 @@ export default function JoinForm() {
           <input
             name="phone"
             required
-            className="mt-1 w-full border border-paper-line bg-white px-3 py-2 text-sm outline-none focus:border-amber-strong"
+            className="mt-1 w-full border border-line bg-bg px-3 py-2 text-sm text-ink outline-none focus:border-amber"
           />
         </label>
       </div>
@@ -96,7 +96,7 @@ export default function JoinForm() {
           name="address"
           required
           placeholder="예: 수원시 장안구 정자동"
-          className="mt-1 w-full border border-paper-line bg-white px-3 py-2 text-sm outline-none focus:border-amber-strong"
+          className="mt-1 w-full border border-line bg-bg px-3 py-2 text-sm text-ink outline-none focus:border-amber"
         />
       </label>
       <label className="mt-4 block text-sm">
@@ -104,18 +104,18 @@ export default function JoinForm() {
         <textarea
           name="message"
           rows={4}
-          className="mt-1 w-full border border-paper-line bg-white px-3 py-2 text-sm outline-none focus:border-amber-strong"
+          className="mt-1 w-full border border-line bg-bg px-3 py-2 text-sm text-ink outline-none focus:border-amber"
         />
       </label>
 
       {status === "error" && (
-        <p className="mt-3 text-sm text-red-700">{error}</p>
+        <p className="mt-3 text-sm text-red-400">{error}</p>
       )}
 
       <button
         type="submit"
         disabled={status === "sending"}
-        className="mt-6 w-full bg-graphite py-3 text-sm font-semibold text-paper transition-colors hover:bg-amber-strong disabled:opacity-60"
+        className="mt-6 w-full bg-amber py-3 text-sm font-semibold text-surface-deep transition-colors hover:bg-amber-strong disabled:opacity-60"
       >
         {status === "sending" ? "전송 중..." : "등록 신청하기"}
       </button>
