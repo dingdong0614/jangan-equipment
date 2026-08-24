@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "codex-grid-background",
+        "value": "*",
+        "files": [
+          "app/globals.css"
+        ],
+        "createdAt": "2026-08-24T14:21:39.613Z",
+        "reason": "intentional: site's chosen direction is an industrial blueprint/spec-sheet aesthetic for a manufacturing-trades directory; grid used once on hero as a literal blueprint surface, not a generic decorative filler"
+      }
+    ]
+  }
+}
