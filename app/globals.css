@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #f2ede2;
+  --paper-line: #d8cfba;
+  --graphite: #1c1f1e;
+  --graphite-soft: #2b2f2d;
+  --blueprint: #3a5a78;
+  --amber: #d97a1f;
+  --amber-strong: #b8620f;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-line: var(--paper-line);
+  --color-graphite: var(--graphite);
+  --color-graphite-soft: var(--graphite-soft);
+  --color-blueprint: var(--blueprint);
+  --color-amber: var(--amber);
+  --color-amber-strong: var(--amber-strong);
+  --font-sans: var(--font-plex-kr);
+  --font-mono: var(--font-plex-mono);
+}
+
+* {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--graphite);
+  font-family: var(--font-sans);
+}
+
+.blueprint-grid {
+  background-image:
+    linear-gradient(var(--paper-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.spec-label {
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
