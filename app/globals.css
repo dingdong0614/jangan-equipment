@@ -45,10 +45,20 @@ body {
 
 .blueprint-grid {
   background-image:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    linear-gradient(rgba(127, 180, 221, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(127, 180, 221, 0.16) 1px, transparent 1px);
   background-size: 32px 32px;
   background-color: var(--surface-deep);
+}
+
+.hero-scrim {
+  background: linear-gradient(
+    100deg,
+    var(--surface-deep) 0%,
+    rgba(10, 22, 38, 0.92) 38%,
+    rgba(10, 22, 38, 0.55) 62%,
+    transparent 85%
+  );
 }
 
 .spec-label {

@@ -9,8 +9,10 @@ export default function Home() {
 
   return (
     <>
-      <section className="blueprint-grid border-b border-line-strong">
-        <div className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
+      <section className="relative overflow-hidden border-b border-line-strong">
+        <div className="blueprint-grid absolute inset-0" aria-hidden />
+        <div className="hero-scrim absolute inset-0" aria-hidden />
+        <div className="relative mx-auto max-w-6xl px-6 py-20 sm:py-28">
           <p className="spec-label text-xs text-blueprint">
             {SITE.region} · EQUIPMENT & TRADE DIRECTORY
           </p>
@@ -19,9 +21,9 @@ export default function Home() {
             <br />한 장의 사양서처럼 정리했습니다.
           </h1>
           <p className="mt-5 max-w-xl text-ink-soft">
-            보일러, 냉난방, 샷시, 주방기계, 철제·판금, 전기설비까지 — 동네에서
-            일하는 소상공인 업체를 업종별로 모아 바로 연락할 수 있게
-            만들었습니다.
+            보일러, 냉난방, 샷시, 주방기계, 철제·판금, 전기설비, 인테리어까지
+            — 동네에서 일하는 소상공인 업체를 업종별로 모아 바로 연락할 수
+            있게 만들었습니다.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
