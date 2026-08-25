@@ -1,14 +1,44 @@
 import Link from "next/link";
 import CategoryGrid from "@/components/CategoryGrid";
 import BusinessRow from "@/components/BusinessRow";
-import { businesses } from "@/data/businesses";
+import { businesses, categories } from "@/data/businesses";
 import { SITE } from "@/lib/config";
 
 export default function Home() {
   const featured = businesses.slice(0, 5);
 
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE.name,
+    url: SITE.url,
+    description: SITE.description,
+  };
+
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `${SITE.name} 업종 카테고리`,
+    itemListElement: categories.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: c.label,
+      url: `${SITE.url}/directory?category=${c.slug}`,
+    })),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
       <section className="relative overflow-hidden border-b border-line-strong">
         <div className="blueprint-grid absolute inset-0" aria-hidden />
         <div className="hero-scrim absolute inset-0" aria-hidden />

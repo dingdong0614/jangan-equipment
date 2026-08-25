@@ -3,7 +3,18 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ContactForm from "@/components/ContactForm";
 import { businesses, getBusiness, getCategory } from "@/data/businesses";
-import { SITE } from "@/lib/config";
+import { SITE, extractDong } from "@/lib/config";
+
+// 업종별 schema.org LocalBusiness 하위 타입. 정확히 대응하는 타입이 없으면 LocalBusiness로 통일.
+const SCHEMA_TYPE_BY_CATEGORY: Record<string, string> = {
+  boiler: "HVACBusiness",
+  hvac: "HVACBusiness",
+  electric: "Electrician",
+  interior: "GeneralContractor",
+  sash: "GeneralContractor",
+  kitchen: "LocalBusiness",
+  metal: "LocalBusiness",
+};
 
 export function generateStaticParams() {
   return businesses.map((b) => ({ slug: b.slug }));
@@ -11,11 +22,31 @@ export function generateStaticParams() {
 
 type PageProps = { params: Promise<{ slug: string }> };
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const business = getBusiness(slug);
   if (!business) return {};
-  return { title: `${business.name} — ${SITE.name}` };
+
+  const category = getCategory(business.categorySlug);
+  const dong = extractDong(business.address);
+  const title = `${business.name} — 장안구 ${dong} ${category?.label ?? ""} | ${SITE.name}`;
+  const description = `수원 장안구 ${dong}에서 활동하는 ${category?.label ?? "설비"} 전문업체, ${business.name}입니다. 연락처와 위치를 확인하세요.`;
+  const canonicalPath = `/directory/${business.slug}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: canonicalPath,
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonicalPath,
+    },
+  };
 }
 
 export default async function BusinessPage({ params }: PageProps) {
@@ -24,12 +55,37 @@ export default async function BusinessPage({ params }: PageProps) {
   if (!business) notFound();
 
   const category = getCategory(business.categorySlug);
+  const dong = extractDong(business.address);
   const naverMapUrl = `https://map.naver.com/p/search/${encodeURIComponent(
     business.address
   )}`;
 
+  const schemaType = SCHEMA_TYPE_BY_CATEGORY[business.categorySlug] ?? "LocalBusiness";
+  const localBusinessJsonLd = {
+    "@context": "https://schema.org",
+    "@type": schemaType,
+    name: business.name,
+    telephone: business.phone,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: business.address,
+      addressLocality: dong,
+      addressRegion: "경기도 수원시 장안구",
+      addressCountry: "KR",
+    },
+    areaServed: dong,
+    url: `${SITE.url}/directory/${business.slug}`,
+    description: business.ownerLine,
+    knowsAbout: business.specialties,
+  };
+
   return (
     <div className="mx-auto max-w-4xl px-6 py-14">
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+      />
       <Link
         href="/directory"
         className="text-sm text-ink-soft hover:text-amber"
