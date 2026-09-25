@@ -1,35 +1,60 @@
 import Link from "next/link";
-import { categories, getBusinessesByCategory } from "@/data/businesses";
+import { ArrowUpRight } from "lucide-react";
+import { categories, categoryCount } from "@/lib/directory";
+import CategoryIcon from "@/components/CategoryIcon";
 
+// 벤토 레이아웃: 업체가 많은 업종일수록 넓은 칸. (데이터 기준 자동 배치)
 export default function CategoryGrid() {
+  const items = categories
+    .map((c) => ({ ...c, count: categoryCount(c.slug) }))
+    .sort((a, b) => b.count - a.count);
+
+  // 6열 그리드에서의 칸 폭: 상위 2개 3칸, 다음 3개 2칸, 나머지 3칸
+  const span = (i: number) =>
+    i < 2 ? "lg:col-span-3" : i < 5 ? "lg:col-span-2" : "lg:col-span-3";
+
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {categories.map((category) => {
-        const count = getBusinessesByCategory(category.slug).length;
-        return (
+    <ul className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-6">
+      {items.map((c, i) => (
+        <li key={c.slug} className={`${i === 0 ? "col-span-2" : ""} ${span(i)}`}>
           <Link
-            key={category.slug}
-            href={`/directory?category=${category.slug}`}
-            className="group relative overflow-hidden border border-line-strong bg-surface p-5 transition-colors hover:border-amber"
+            href={`/directory?category=${c.slug}`}
+            className={`card card-link group flex h-full flex-col justify-between p-4 sm:p-6 ${
+              i < 2 ? "lg:min-h-[208px]" : "lg:min-h-[176px]"
+            }`}
           >
-            <div className="flex items-start justify-between">
-              <span className="spec-label text-xs text-blueprint">
-                {category.code}
+            <div className="flex items-start justify-between gap-3">
+              <span className="grid h-11 w-11 place-items-center rounded-xl border border-line-strong bg-bg-1 text-teal transition-colors group-hover:text-amber">
+                <CategoryIcon slug={c.slug} size={22} />
               </span>
-              <span className="spec-label text-xs text-ink-soft/70">
-                {String(count).padStart(2, "0")}개 업체
-              </span>
+              <span className="spec-label text-[11px] text-ink-soft">{c.code}</span>
             </div>
-            <h3 className="mt-3 text-lg font-bold">{category.label}</h3>
-            <p className="mt-1 text-sm text-ink-soft">
-              {category.description}
-            </p>
-            <span className="mt-4 inline-block text-sm font-semibold text-amber opacity-0 transition-opacity group-hover:opacity-100">
-              목록 보기 →
-            </span>
+            <div className="mt-5">
+              <h3 className="flex items-center gap-1.5 text-[17px] font-bold text-ink sm:text-lg">
+                {c.label}
+                <ArrowUpRight
+                  size={16}
+                  aria-hidden
+                  className="text-ink-soft transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-amber"
+                />
+              </h3>
+              <p className="mt-1 hidden text-sm leading-relaxed text-ink-soft sm:block">
+                {c.description}
+              </p>
+              <p className="mt-2 text-sm">
+                {c.count > 0 ? (
+                  <>
+                    <span className="font-mono text-base font-medium text-amber">{c.count}</span>
+                    <span className="text-ink-soft">곳 등재</span>
+                  </>
+                ) : (
+                  <span className="text-ink-soft">등록 업체 모집 중</span>
+                )}
+              </p>
+            </div>
           </Link>
-        );
-      })}
-    </div>
+        </li>
+      ))}
+    </ul>
   );
 }

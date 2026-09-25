@@ -9,6 +9,13 @@ export const SITE = {
   url: "https://jangan-equipment.vercel.app",
 };
 
+// 운영 문의·등록 상담·정보 수정/삭제 요청 창구. (/privacy 에 이미 공개된 연락처)
+export const OPERATOR = {
+  phone: "010-9786-2433",
+  tel: "tel:01097862433",
+  email: "ceo@doion.co.kr",
+};
+
 // "수원시 장안구 정자동" 같은 주소 문자열에서 동네 이름만 추출한다. (동네 단위 롱테일 SEO용)
 export function extractDong(address: string): string {
   const match = address.match(/([가-힣]+동)(?!\S)/);
@@ -16,4 +23,5 @@ export function extractDong(address: string): string {
 }
 
 // TODO: web3forms.com 에서 무료로 발급받은 access key로 교체 (가입 없이 이메일만으로 즉시 발급)
+// Web3Forms access key는 브라우저에서 쓰도록 설계된 공개 키다(비밀값 아님).
 export const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";

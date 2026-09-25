@@ -1,34 +1,43 @@
 import Link from "next/link";
-import { SITE } from "@/lib/config";
+import { Phone } from "lucide-react";
+import { SITE, OPERATOR } from "@/lib/config";
 
 const NAV = [
-  { href: "/directory", label: "업체 디렉토리" },
-  { href: "/join", label: "업체 등록 신청" },
+  { href: "/directory", label: "업체 찾기" },
+  { href: "/join", label: "사장님 등록 안내" },
 ];
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-line-strong bg-bg/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="/" className="flex items-baseline gap-2">
-          <span className="font-mono text-xs text-amber-strong spec-label">
-            JANGAN-GU
-          </span>
-          <span className="text-lg font-bold tracking-tight">
-            {SITE.name}
-          </span>
+    <header className="sticky top-0 z-40 border-b border-line-strong bg-bg">
+      <div className="wrap flex h-14 items-center justify-between gap-4 md:h-16">
+        <Link href="/" className="flex min-h-11 items-baseline gap-2" aria-label={`${SITE.name} 홈`}>
+          <span className="font-display text-[21px] text-ink md:text-[23px]">{SITE.name}</span>
+          <span className="hidden text-[13px] text-ink-soft lg:inline">수원 장안구 설비·인테리어 업체 모음</span>
         </Link>
-        <nav className="flex items-center gap-6 text-sm font-medium">
+
+        <nav aria-label="주요 메뉴" className="hidden items-center gap-1 md:flex">
           {NAV.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-ink-soft transition-colors hover:text-amber"
+              className="px-3 py-2.5 text-[15px] font-semibold text-ink-body hover:text-amber"
             >
               {item.label}
             </Link>
           ))}
+          <a href={OPERATOR.tel} className="btn btn-ghost ml-2 !min-h-11 !px-4 !text-sm">
+            <Phone size={15} aria-hidden />
+            등록 상담 {OPERATOR.phone}
+          </a>
         </nav>
+
+        <Link
+          href="/join"
+          className="flex min-h-11 items-center px-1 text-[14px] font-bold text-amber md:hidden"
+        >
+          사장님 등록
+        </Link>
       </div>
     </header>
   );

@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import DirectoryClient from "@/components/DirectoryClient";
 import { getCategory } from "@/data/businesses";
+import { isKnownDong } from "@/lib/directory";
 import { SITE } from "@/lib/config";
+import Pic from "@/components/Pic";
+import { CATEGORY_PHOTO, PHOTOS } from "@/lib/photos";
 
 // 카테고리별 SEO 문구. 키워드는 clients/장안설비대장_SEO_키워드_프롬프트_2026-08.md 1-2 참고.
 const CATEGORY_SEO: Record<string, { title: string; description: string }> = {
@@ -38,7 +41,7 @@ const CATEGORY_SEO: Record<string, { title: string; description: string }> = {
 };
 
 type PageProps = {
-  searchParams: Promise<{ category?: string }>;
+  searchParams: Promise<{ category?: string; dong?: string; q?: string; focus?: string }>;
 };
 
 export async function generateMetadata({
@@ -47,6 +50,7 @@ export async function generateMetadata({
   const params = await searchParams;
   const category =
     params.category && getCategory(params.category) ? params.category : undefined;
+  // canonical은 업종 단위까지만. 동네·검색어 조합은 /directory 또는 업종 URL로 모은다.
   const canonicalPath = category
     ? `/directory?category=${category}`
     : "/directory";
@@ -75,9 +79,10 @@ export default async function DirectoryPage({ searchParams }: PageProps) {
     params.category && getCategory(params.category) ? params.category : "all";
   const activeCategory =
     initialCategory !== "all" ? getCategory(initialCategory) : undefined;
+  const initialDong = isKnownDong(params.dong) ? params.dong : "all";
+  const initialQuery = (params.q ?? "").slice(0, 40);
 
   // 검색엔진이 /directory?category=X 링크로 직접 들어왔을 때를 위한 구조화 데이터.
-  // (카테고리 버튼 클릭으로 인한 클라이언트 사이드 필터링은 URL을 바꾸지 않으므로 여기서 반영되지 않음 — 아래 참고)
   const breadcrumb = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -102,21 +107,38 @@ export default async function DirectoryPage({ searchParams }: PageProps) {
     ],
   };
 
+  const photo = activeCategory ? CATEGORY_PHOTO[activeCategory.slug] : PHOTOS.plumber;
+
   return (
-    <div className="mx-auto max-w-6xl px-6 py-14">
+    <div className="wrap pb-8 pt-5 md:pt-8">
       <script
         type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
       />
-      <p className="spec-label text-xs text-blueprint">DIRECTORY</p>
-      <h1 className="mt-2 text-3xl font-bold">업체 디렉토리</h1>
-      <p className="mt-2 text-ink-soft">
-        {SITE.region} 설비·제조 업체를 업종별로 찾아보세요.
-      </p>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] md:items-end md:gap-10">
+        <div className="order-2 md:order-1">
+          <h1 className="font-display text-[28px] text-ink sm:text-[38px]">
+            {activeCategory ? `장안구 ${activeCategory.label} 업체` : "장안구 설비·인테리어 업체"}
+          </h1>
+          <p className="mt-2 max-w-xl text-ink-body">
+            {activeCategory
+              ? `${activeCategory.description}. 동네를 고르면 가까운 곳만 남아요.`
+              : "업종 탭을 누르고, 동네를 고르면 가까운 곳만 남아요. 직접 등록한 업체는 맨 위에 전화번호와 함께 나옵니다."}
+          </p>
+        </div>
+        <div className="relative order-1 h-[120px] overflow-hidden rounded-md md:order-2 md:h-[180px]">
+          <Pic photo={photo} sizes="(min-width: 768px) 50vw, 100vw" eager className="absolute inset-0" />
+        </div>
+      </div>
 
-      <div className="mt-10">
-        <DirectoryClient initialCategory={initialCategory} />
+      <div className="mt-6">
+        <DirectoryClient
+          key={`${initialCategory}|${initialDong}|${initialQuery}|${params.focus ?? ""}`}
+          initialCategory={initialCategory}
+          initialDong={initialDong}
+          initialQuery={initialQuery}
+          autoFocusSearch={params.focus === "search"}
+        />
       </div>
     </div>
   );
