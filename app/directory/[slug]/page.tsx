@@ -139,7 +139,7 @@ export default async function BusinessPage({ params }: PageProps) {
             <p className="text-[15px] text-ink-body">
               장안구 {dong} · {category?.label}
               {!business.claimed && (
-                <span className="ml-2 rounded border border-line-strong px-1.5 py-0.5 text-[12px] text-ink-soft">
+                <span className="ml-2 rounded border border-line-strong px-1.5 py-0.5 text-[13px] text-ink-soft">
                   미등록 업체
                 </span>
               )}

@@ -1,11 +1,9 @@
-# 폰트·아이콘·이미지 출처 (2026-09 리워크)
+# 폰트·아이콘·이미지 출처
 
-| 자산 | 파일 | 라이선스 | 출처 |
+| 자산 | 위치 | 라이선스 | 출처 |
 |---|---|---|---|
-| Pretendard 1.3.9 (Regular/SemiBold/Bold, KS X 1001 서브셋) | app/fonts/Pretendard-*.subset.woff2 | SIL OFL 1.1 | https://github.com/orioncactus/pretendard (npm `pretendard`) |
-| Noto Serif KR Bold (KS X 1001 한글 2,350자 + ASCII + 업체명 글자로 직접 서브셋) | app/fonts/NotoSerifKR-Bold.subset.woff2 | SIL OFL 1.1 | Google Fonts (npm `@expo-google-fonts/noto-serif-kr`) |
+| Pretendard Variable 1.3.9 (다이내믹 서브셋) | npm `pretendard` (app/layout.tsx에서 CSS import) | SIL OFL 1.1 | https://github.com/orioncactus/pretendard |
 | 아이콘 | lucide-react | ISC | https://lucide.dev |
 
-사진: docs/image-credits.md 참고(2차 리워크에서 Unsplash 사용).
-
-주의: 업체명에 KS X 1001 밖의 한글이 새로 들어오면 제목 세리프에서 해당 글자만 Pretendard로 대체 표시된다. 필요하면 서브셋을 다시 만든다.
+2026-09-26 폰트 정리: 한글 세리프(Noto Serif KR)·모노(IBM Plex Mono) 제거, Pretendard 한 종으로 조판.
+사진: docs/image-credits.md 참고.

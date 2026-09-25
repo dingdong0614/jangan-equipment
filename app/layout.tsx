@@ -1,30 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
+import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TabBar from "@/components/TabBar";
 import { SITE } from "@/lib/config";
 
-// 폰트는 셀프호스팅(app/fonts). 라이선스는 docs/credits.md 참고.
-// 본문·UI: Pretendard (KS X 1001 서브셋)
-const pretendard = localFont({
-  variable: "--font-pretendard",
-  display: "swap",
-  src: [
-    { path: "./fonts/Pretendard-Regular.subset.woff2", weight: "400" },
-    { path: "./fonts/Pretendard-SemiBold.subset.woff2", weight: "600" },
-    { path: "./fonts/Pretendard-Bold.subset.woff2", weight: "700" },
-  ],
-});
-
-// 큰 제목: Noto Serif KR Bold (KS X 1001 + 업체명 글자 서브셋)
-const serifKr = localFont({
-  variable: "--font-serif-kr",
-  display: "swap",
-  preload: false,
-  src: [{ path: "./fonts/NotoSerifKR-Bold.subset.woff2", weight: "700" }],
-});
+// 폰트: Pretendard Variable 한 종(npm pretendard, 다이내믹 서브셋, OFL). 세리프·모노 사용 안 함.
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -52,7 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="ko"
-      className={`${pretendard.variable} ${serifKr.variable} h-full`}
+      className="h-full"
     >
       <body className="flex min-h-full flex-col antialiased">
         <a

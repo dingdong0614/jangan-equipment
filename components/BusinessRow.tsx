@@ -17,15 +17,15 @@ export default function BusinessRow({ business }: { business: Business }) {
         className="grid min-w-0 flex-1 gap-x-4 py-3 hover:bg-bg-1 md:grid-cols-[minmax(0,1.4fr)_120px_80px_minmax(0,1fr)] md:items-baseline md:px-2"
       >
         <span className="min-w-0">
-          <span className="text-[16px] font-bold text-ink">{business.name}</span>
+          <span className="text-[16px] font-semibold text-ink">{business.name}</span>
           {!business.claimed && (
-            <span className="ml-2 align-[1px] text-[12px] text-ink-soft">미등록</span>
+            <span className="ml-2 align-[1px] text-[13px] text-ink-soft">미등록</span>
           )}
         </span>
         <span className="hidden text-[14px] text-ink-body md:block">
           {MAP_TYPE[business.slug] ?? category?.label}
         </span>
-        <span className="hidden text-[14px] font-semibold text-ink md:block">{business.dong}</span>
+        <span className="hidden text-[14px] font-medium text-ink md:block">{business.dong}</span>
         <span className="mt-0.5 truncate text-[14px] text-ink-soft md:mt-0">
           <span className="md:hidden">
             {category?.label} · {business.dong} ·{" "}

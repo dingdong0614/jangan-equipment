@@ -148,10 +148,10 @@ export default function Home() {
                   {list.map((b) => (
                     <li key={b.slug} className="border-b border-line">
                       <Link href={`/directory/${b.slug}`} className="leader min-h-11 py-2 text-[15px] hover:text-amber">
-                        <span className="min-w-0 font-semibold text-ink">
+                        <span className="min-w-0 font-medium text-ink">
                           {b.name}
                           {extraMapType(b.slug, c.slug) && (
-                            <span className="ml-1.5 text-[12.5px] font-normal text-ink-soft">{extraMapType(b.slug, c.slug)}</span>
+                            <span className="ml-1.5 text-[13px] font-normal text-ink-soft">{extraMapType(b.slug, c.slug)}</span>
                           )}
                         </span>
                         <span className="end flex-none text-[14px] text-ink-body">
@@ -199,7 +199,7 @@ export default function Home() {
                 <li key={d.dong} className="border-b border-line">
                   <Link
                     href={`/directory?dong=${encodeURIComponent(d.dong)}`}
-                    className="leader min-h-11 py-2.5 text-[16px] font-semibold text-ink hover:text-amber"
+                    className="leader min-h-11 py-2.5 text-[16px] font-medium text-ink hover:text-amber"
                   >
                     <span>{d.dong}</span>
                     <span className="end tnum text-[14px] font-normal text-ink-body">{d.count}곳</span>
@@ -216,7 +216,7 @@ export default function Home() {
         <Pic photo={PHOTOS.workbench} sizes="100vw" className="absolute inset-0 opacity-45" decorative />
         <div className="relative wrap py-14 text-white md:py-20">
           <div className="max-w-2xl">
-            <p className="text-[15px] font-semibold text-white/85">설비·인테리어 사장님께</p>
+            <p className="text-[14px] font-medium text-white/85">설비·인테리어 사장님께</p>
             <h2 className="font-display mt-3 text-[28px] md:text-[40px]">
               용접 중에, 사다리 위에서,
               <br />
