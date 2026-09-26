@@ -107,7 +107,9 @@ export default function ContactForm({ businessName }: { businessName: string }) 
         {status === "sending" ? "보내는 중..." : "견적 문의 보내기"}
       </button>
       <p className="mt-3 text-xs text-ink-soft">
-        보내신 내용은 문의 대상 업체에 전달됩니다.{" "}
+        보내신 내용은 문의 대상 업체에 전달되며, 문의 처리 완료 후 1년간
+        보관합니다. 문의 접수·호스팅을 위해 Web3Forms(인도)·Vercel(미국)로
+        국외 이전됩니다.{" "}
         <a href="/privacy" className="underline hover:text-amber">
           개인정보처리방침
         </a>

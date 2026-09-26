@@ -130,6 +130,13 @@ export default function JoinForm({ monthlyFee }: { monthlyFee: string }) {
         신청 승인 후 {monthlyFee} 이용료가 청구됩니다. 게시는 상담 후 계약서와
         개인정보 공개 동의서를 받은 다음 진행합니다.
       </p>
+      <p className="mt-2 text-xs text-ink-soft">
+        신청 내용은 처리 완료 후 1년간 보관하며, 접수·호스팅을 위해
+        Web3Forms(인도)·Vercel(미국)로 국외 이전됩니다.{" "}
+        <a href="/privacy" className="underline hover:text-amber">
+          개인정보처리방침
+        </a>
+      </p>
       <button type="submit" disabled={status === "sending"} className="btn btn-primary mt-4 w-full disabled:opacity-60">
         {status === "sending" ? "보내는 중..." : "등록 신청 보내기"}
       </button>
